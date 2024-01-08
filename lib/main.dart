@@ -9,7 +9,7 @@ void main() async{
 
    WidgetsFlutterBinding.ensureInitialized();
 
-   Stripe.publishableKey = "pk_test_51OVVcyFiDaJ8bQBjyv4imMqxSbWPo07q81rTzpcw7yUIlXiUBfFThslht2LC8uD5Ec5MuiW1SPyrasy8N6v3MfyJ00d1bz549n";
+    Stripe.publishableKey = "pk_test_51OVVcyFiDaJ8bQBjyv4imMqxSbWPo07q81rTzpcw7yUIlXiUBfFThslht2LC8uD5Ec5MuiW1SPyrasy8N6v3MfyJ00d1bz549n";
 
       runApp(const MyApp());
 }
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Stripe payment',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -42,7 +42,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Stripe payments"),),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Stripe payments"),),
 
 
       body: Column(
@@ -62,9 +64,7 @@ class _HomePageState extends State<HomePage> {
 
 
   Map <String, dynamic>? paymentInternData;
-
-
-  /// ------------------------make payment -------------------------
+  /// ------------------------make payment-------------------------
   Future<void> makePayment(String amount, String currency)async{
 
    try{
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
      if(paymentInternData != null){
        await Stripe.instance.initPaymentSheet(
            paymentSheetParameters: SetupPaymentSheetParameters(
-                 // applePay: true,
+                  // applePay: true,
                 googlePay: PaymentSheetGooglePay(merchantCountryCode: "IN"),
                merchantDisplayName: "Proshepts",
                customerId: paymentInternData!["customer"],
